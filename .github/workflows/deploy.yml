@@ -27,6 +27,8 @@ jobs:
           directory: front-end/
           file_name: .env
           fail_on_empty: true
+      - name: Clean Docker
+        run: docker kill $(docker ps -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
       - name: Build process
         run: docker-compose build
       - name: Run app docker compose
